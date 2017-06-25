@@ -1,0 +1,38 @@
+{{ time_array[0] + ":" + time_array[1] + ":" + time_array[2]}}
+<script type="text/javascript">
+var total_seconds = {{ total_seconds }}
+function updateClock() {
+
+  total_seconds = total_seconds + 1;
+  console.log(total_seconds);
+
+  hours = Math.floor(total_seconds / 3600);
+
+  if(hours == 24) {
+    total_seconds = 0;
+    hours = 0;
+  }
+
+  minutes = Math.floor((total_seconds - hours * 3600) / 60);
+  seconds = total_seconds - hours * 3600 - minutes * 60;
+
+  if(hours < 10) {
+    hours = "0" + hours;
+  }
+
+  if(minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  if(seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  time = hours + ":" + minutes + ":" + seconds;
+  $('#clock').html(time);
+
+  setTimeout(updateClock, 1000);
+}
+
+setTimeout(updateClock, 1000);
+</script>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Worker's system</title>
+    <!--BOOTSTRAP IMPORT -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style media="screen">
+      .enter-button {
+        background-image: url( {{ url_for('static', filename='images/in.png') }} );
+        background-size: 100% 100%;
+        width: 20%;
+        padding-top: 20%;
+        margin-right: 5%;
+        box-sizing: border-box;
+      }
+
+      .exit-button {
+        background-image: url( {{ url_for('static', filename='images/out.png') }} );
+        background-size: 100% 100%;
+        width: 20%;
+        padding-top: 20%;
+        margin-right: 5%;
+        box-sizing: border-box;
+      }
+
+      .list-button {
+        background-image: url( {{ url_for('static', filename='images/list.png') }} );
+        background-color: white;
+        background-size: 100% 100%;
+        width: 20%;
+        padding-top: 20%;
+        margin-right: 5%;
+        box-sizing: border-box;
+      }
+
+      .last-button {
+        background-image: url( {{ url_for('static', filename='images/last.png') }} );
+        background-color: white;
+        background-size: 100% 100%;
+        width: 20%;
+        padding-top: 20%;
+        box-sizing: border-box;
+      }
+
+      {}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header text-center">
+        <h1>Worker's System</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-8 col-xs-12 col-md-offset-4 col-sm-offset-2 text-center" id="clock" style="font-size: 25px">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2">
+          <h3 class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 text-center">Enter your worker's ID</h3>
+          <input class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12" type="text" style="text-align:center" name="worker_id" maxlength="4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2 text-center login-errors" style="margin-top: 10px">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-8 col-xs-12 col-md-offset-4 col-sm-offset-2" style="margin-top: 10px; box-sizing: border-box;">
+          <button class="enter-button" type="button" name="enter"></button>
+          <button class="exit-button" type="button" name="exit"></button>
+          <button class="list-button" type="button" name="list"></button>
+          <button class="last-button" type="button" name="last"></button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-8 col-xs-12 col-md-offset-4 col-sm-offset-2 info">
+        </div>
+      </div>
+    </div>
+    <!-- JQUERY AND BOOTSTRAP JS IMPORT -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+        function setClock() {
+          $.ajax({
+            url: '/get-time',
+            success: function(response) {
+              $('#clock').html(response);
+            },
+            error: function(response) {
+              console.log(response)
+            }
+          });
+        }
+
+        setClock();
+
+        $('button[name=enter]').click(function(){
+          console.log($(this));
+        });
+
+        $('button[name=exit]').click(function(){
+          console.log($(this));
+        });
+
+        $('button[name=list]').click(function(){
+          console.log($(this));
+        });
+
+        $('button[name=last]').click(function(){
+          console.log($(this));
+        });
+
+      });
+    </script>
+  </body>
+</html>
